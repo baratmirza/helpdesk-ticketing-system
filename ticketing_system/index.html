@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <title>Jira - Professional UI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<aside class="jira-sidebar">
+    <div class="project-info">
+        <div class="project-icon"><i class="fas fa-project-diagram"></i></div>
+        <div class="project-text">
+            <span class="project-name">Ticketing System</span>
+            <span class="project-type">Software project</span>
+        </div>
+    </div>
+    <nav class="side-nav">
+        <a href="#" class="active"><i class="fas fa-columns"></i> Kanban Board</a>
+        <a href="#"><i class="fas fa-list-ul"></i> Backlog</a>
+        <a href="#"><i class="fas fa-chart-line"></i> Reports</a>
+        <a href="#"><i class="fas fa-cog"></i> Project Settings</a>
+    </nav>
+</aside>
+
+<main class="main-layout">
+    <header class="top-header">
+        <div class="breadcrumbs"></div>
+        <div class="board-header">
+            <h2>Kanban board</h2>
+            <div class="board-actions">
+                <button class="btn-primary" onclick="toggleModal(true)">Create Ticket</button>
+            </div>
+        </div>
+        
+        <div class="filter-bar">
+            <div class="search-wrapper">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchBox" placeholder="Search issues..." oninput="filterTickets()">
+            </div>
+            <div class="avatars">
+                <div class="avatar">U1</div>
+                <div class="avatar">U2</div>
+                <span class="plus">+3</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="kanban-container">
+        <div class="kanban-col" id="open" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="col-title">TO DO <span class="count">0</span></div>
+            <div class="ticket-list"></div>
+        </div>
+        <div class="kanban-col" id="pending" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="col-title">IN PROGRESS <span class="count">0</span></div>
+            <div class="ticket-list"></div>
+        </div>
+        <div class="kanban-col" id="closed" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="col-title">DONE <span class="count">0</span></div>
+            <div class="ticket-list"></div>
+        </div>
+    </div>
+</main>
+
+<div id="ticketModal" class="modal">
+    <div class="modal-content">
+        <h3>Create Issue</h3>
+        <label>Summary</label>
+        <input type="text" id="title" placeholder="What needs to be done?">
+        <label>Description</label>
+        <textarea id="desc" rows="4"></textarea>
+        <label>Priority</label>
+        <select id="priority">
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+        </select>
+        <div class="modal-btns">
+            <button class="btn-text" onclick="toggleModal(false)">Cancel</button>
+            <button class="btn-primary" onclick="saveTicket()">Create</button>
+        </div>
+    </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
